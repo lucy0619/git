@@ -1,0 +1,12 @@
+import requests
+import json
+
+r = requests.get(
+    "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=PRECIP_HLY&startdate=2000-08-24T14:00:00&enddate=2000-08-24T14:00:00&locationid=FIPS:12",
+    headers={'token': 'fjLEJjvwSFBhxQXoWaWxbzfengAxoVPc'})
+r.text
+data = json.loads(r.text)
+value = 0
+for i in range(len(data["results"])):
+  value+=data["results"][i]["value"]
+print(value/len(data["results"]))
